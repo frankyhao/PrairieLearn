@@ -50,12 +50,14 @@
               <tr>
                 <td class="align-middle" style="width: 1%">
                   <a href="<%= urlPrefix %>/assessment/<%= row.id %>/" class="badge color-<%= row.color %> color-hover" role="button">
-                    <% if(row.groupwork){ %>
-                      Group
-                    <% } %>
                     <%= row.label %></a>
                 </td>
                 <td class="align-middle">
+                  <% if(row.groupwork){ %>
+                    <span class="badge badge-info">
+                      Group
+                    </span>
+                  <% } %>
                   <a href="<%= urlPrefix %>/assessment/<%= row.id %>/"><%= row.title %></a>
                   <%- include('../partials/issueBadge', {count: row.open_issue_count}); %>
                 </td>
