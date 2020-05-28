@@ -79,13 +79,13 @@
                   <input type="text" class="form-control" id="formMax" name="maxnum">
                 </div>
                 <div class="radio">
-                  <label><input type="radio" name="optradio" value = 1 checked>Grouping entire class (Please delete all groups before executing)</label>
+                  <label><input type="radio" name="optradio" value = 1 class="mr-2" checked>Group entire class (Please delete all groups before executing)</label>
                 </div>
                 <div class="radio">
-                  <label><input type="radio" name="optradio" value = 2>Grouping not-assigned students (fill existing groups first)</label>
+                  <label><input type="radio" name="optradio" value = 2 class="mr-2">Group unassigned students (fill existing groups first)</label>
                 </div>
                 <div class="radio">
-                  <label><input type="radio" name="optradio" value = 3>Grouping not-assigned students (will not change existing groups; create new groups only)</label>
+                  <label><input type="radio" name="optradio" value = 3 class="mr-2">Group unassigned students (will not change existing groups; create new groups only)</label>
                 </div>
                 <div class="d-flex justify-content-end">
                   <div class="form-group mb-0">
@@ -158,7 +158,6 @@
           </div>
         </div>
       </div>
-
       <div class="modal fade" id="deleteAllGroupsModal" tabindex="-1" role="dialog" aria-labelledby="deleteAllGroupsModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -227,6 +226,7 @@
                 </div>
             </div>
         </div>
+        <% if (groups_rows.length > 0) { %>
         <div class="table-responsive">
           <table id="usersTable" class="table table-sm table-hover tablesorter">
             <thead>
@@ -307,26 +307,27 @@
               <% }); %>
             </tbody>
           </table>
-          <div class="card-footer">
-            <small>
-            <% if (not_assigned_users_rows.length == 0) { %>
-                <strong>
-                    All students have been assigned groups.
-                </strong>
-            <% } else { %>
-                <strong>
-                    <%= not_assigned_users_rows.length %>
-                    student<% if (not_assigned_users_rows.length > 1) { %>s<% } %>
-                    not yet assigned:
-                </strong>
-                <ul class="mb-0">
-                  <% not_assigned_users_rows.forEach(function(row, iRow) {%>
-                  <li><%= row.uid %></li>
-                  <% }); %>
-                </ul>
-            <% } %>
-            </small>
-          </div>
+        </div>
+        <% } %>
+        <div class="card-footer">
+          <small>
+          <% if (not_assigned_users_rows.length == 0) { %>
+              <strong>
+                  All students have been assigned groups.
+              </strong>
+          <% } else { %>
+              <strong>
+                  <%= not_assigned_users_rows.length %>
+                  student<% if (not_assigned_users_rows.length > 1) { %>s<% } %>
+                  not yet assigned:
+              </strong>
+              <ul class="mb-0">
+                <% not_assigned_users_rows.forEach(function(row, iRow) {%>
+                <li><%= row.uid %></li>
+                <% }); %>
+              </ul>
+          <% } %>
+          </small>
         </div>
         <script>
           $(function(){
