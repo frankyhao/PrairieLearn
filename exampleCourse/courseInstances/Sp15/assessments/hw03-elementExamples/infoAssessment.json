@@ -4,6 +4,7 @@
     "title": "PrairieLearn element example gallery",
     "set": "Homework",
     "number": "3",
+    "groupwork": true,
     "allowAccess": [
         {
             "mode": "Public",
@@ -46,7 +47,8 @@
                 {"id": "elementVariableOutput",           "points": 2, "maxPoints": 10},
                 {"id": "elementFileEditor",               "points": 2, "maxPoints": 10},
                 {"id": "elementPythonVariable",           "points": 2, "maxPoints": 10},
-                {"id": "elementGraph",                    "points": 2, "maxPoints": 10}
+                {"id": "elementGraph",                    "points": 2, "maxPoints": 10},
+                {"id": "elementOverlay",            "points": 2, "maxPoints": 10}
             ]
         }
     ]
