@@ -53,30 +53,35 @@
               </div>
               <div class="card-body bg-light py-2">
                 <div>
-                  The group <b><%= groupinfo[0].name %></b> has <%= groupinfo.length %>
-                  <% if (groupinfo.length == 1) { %>
+                  Your group <b><%= group.name %></b> has
+                  <%= group.members.length %>
+                  <% if (group.members.length == 1) { %>
                     member:
                   <% } else { %>
                     members:
                   <% } %>
                 </div>
                 <div>
-                  <!-- Display current user before others -->
-                  <% console.log(user); %>
-                  <% console.log(groupinfo); %>
-                  <% if (groupinfo[0].uid == user.uid) { %>
-                    <span class="badge badge-light border">
-                      <%= user.uid %> (you)
+                  <!-- Other groupmates -->
+                  <% group.members.forEach(function(member) { %>
+                    <span class="badge badge-light border"> <!-- title="<%= member.uid %>" -->
+                      <%= member.uid %>
+                      <% if (member.uid === user.uid) { %>
+                        (you)
+                      <% } %>
+                    </span>
+                  <% }); %>
+                  <!-- Info about number of teammates (not enough, full) -->
+                  <% if (group.minimum && group.members.length < group.minimum) { %>
+                    <span class="badge badge-warning border">
+                      You need <%= group.minimum - group.members.length %> more members to do this assessment
                     </span>
                   <% } %>
-                  <!-- Other groupmates -->
-                  <% groupinfo.forEach(function(row) {
-                    if (row.uid != user.uid) { %>
-                      <span class="badge badge-light border">
-                        <%= row.uid %>
-                      </span>
-                    <% } %>
-                  <% }); %>
+                  <% if (group.maxmimum && group.members.length >= group.maximum) { %>
+                    <span class="badge badge-info border">
+                      Group is full
+                    </span>
+                  <% } %>
                 </div>
               </div>
               <div class="card-body bg-light border-top py-2 d-flex flex-row align-items-center justify-content-between flex-wrap">
@@ -86,7 +91,7 @@
                   </div>
                   <div>
                     <small>
-                      Use this to invite others to join your group.
+                      A code to invite others to join your group.
                     </small>
                   </div>
                 </div>

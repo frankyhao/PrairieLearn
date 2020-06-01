@@ -20,7 +20,7 @@ const ensureUpToDate = (locals, callback) => {
 
         debug('updated:', updated);
         if (!updated) return callback(null);
-        
+
         // we updated the assessment_instance, so reload it
 
         debug('selecting assessment instance');
@@ -56,16 +56,25 @@ router.get('/', function(req, res, next) {
             assessment.renderText(res.locals.assessment, res.locals.urlPrefix, function(err, assessment_text_templated) {
                 if (ERR(err, next)) return;
                 res.locals.assessment_text_templated = assessment_text_templated;
-                debug('rendering EJS');
-                if(res.locals.assessment.groupwork){
-                    sqldb.query(sql.get_groupinfo, params, function(err, result) {
-                        if (ERR(err, next)) return;
-                        res.locals.groupinfo = result.rows;
-                        const group_id = res.locals.groupinfo[0].group_id || 0;
+                if(res.locals.assessment.groupwork) {
+                    sqldb.queryOneRow(sql.get_asssessment_group, params, function(err, result) {
+                        if (ERR(err, next)) {
+                          // error.newMessage(`User belongs to zero or multiple groups for assessment`);
+                          return;
+                        }
+                        res.locals.group = result.rows[0];
+                        const group_id = res.locals.group.id || 0;
                         res.locals.friendcode = Buffer.from(group_id, 'utf-8').toString('base64');
-                        res.render(__filename.replace(/\.js$/, '.ejs'), res.locals);
+                        params.group_id = group_id;
+                        sqldb.query(sql.get_group_members, params, function(err, result) {
+                            if (ERR(err, next)) return;
+                            res.locals.group.members = result.rows;
+                            debug('rendering EJS');
+                            res.render(__filename.replace(/\.js$/, '.ejs'), res.locals);
+                        });
                     });
                 } else {
+                    debug('rendering EJS');
                     res.render(__filename.replace(/\.js$/, '.ejs'), res.locals);
                 }
             });
