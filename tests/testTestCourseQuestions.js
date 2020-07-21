@@ -19,7 +19,6 @@ const qidsTestCourse = [
     'differentiatePolynomial',
     'downloadFile',
     'positionTimeGraph',
-    'prairieDrawFigure',
 ];
 
 describe('Auto-test questions in testCourse', function() {

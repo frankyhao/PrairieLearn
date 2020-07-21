@@ -3,8 +3,7 @@ columns
     filename: text
     id: bigint not null default nextval('migrations_id_seq'::regclass)
     index: integer
-    project: text default 'prairielearn'::text
 
 indexes
     migrations_pkey: PRIMARY KEY (id) USING btree (id)
-    migrations_project_index_key: UNIQUE (project, index) USING btree (project, index)
+    migrations_index_key: UNIQUE (index) USING btree (index)

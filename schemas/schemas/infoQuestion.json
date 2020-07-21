@@ -220,11 +220,7 @@
                     "description": "The port number used in the Docker image.",
                     "type": "integer"
                 },
-                "args": {
-                    "description": "Command line arguments to pass to the Docker.",
-                    "type": "string"
-                },
-                 "gradedFiles": {
+                "gradedFiles": {
                     "description": "The list of files or directories that will be copied for grading.",
                     "type": "array",
                     "items": {

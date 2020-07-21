@@ -1,7 +1,6 @@
 import numpy as np
 import json
 import itertools
-from os import path
 
 
 def get_name(student):
@@ -13,11 +12,8 @@ def get_name(student):
 
 
 def generate(data):
-    # We will get our list of students from clientFilesCourse
-    base_path = data['options']['client_files_course_path']
-
     # Get list of students
-    with open(path.join(base_path, 'student_names.json'), 'r') as infile:
+    with open('../../../clientFilesCourse/student_names.json', 'r') as infile:
         all_students = json.load(infile)
 
     n = 5

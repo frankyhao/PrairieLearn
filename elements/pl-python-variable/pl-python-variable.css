@@ -8,7 +8,6 @@
     border-collapse: collapse;
     border: none;
     border-spacing: 0;
-    margin-bottom: 1rem;
 }
 
 .pl-python-variable-table thead {
@@ -53,9 +52,9 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     line-height: 20px;
-    margin-bottom: 1rem;
+    margin-bottom: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    margin-top: 1rem;
+    margin-top: 14px;
     text-align: left;
 }

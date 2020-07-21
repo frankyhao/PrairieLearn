@@ -55,7 +55,6 @@ module.exports.sync = function(courseInfo, questionDB, jobLogger, callback) {
                 dependencies: q.dependencies || {},
                 workspace_image: (q.workspaceOptions && q.workspaceOptions.image),
                 workspace_port: (q.workspaceOptions && q.workspaceOptions.port),
-                workspace_args: (q.workspaceOptions && q.workspaceOptions.args),
                 workspace_graded_files: (q.workspaceOptions && q.workspaceOptions.gradedFiles),
             };
         });

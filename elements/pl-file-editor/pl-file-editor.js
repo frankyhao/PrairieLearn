@@ -44,8 +44,6 @@ window.PLFileEditor = function(uuid, options) {
         this.editor.setOption('maxLines', Infinity);
     }
 
-    this.plOptionFocus = options.plOptionFocus;
-
     if (options.preview == 'markdown') {
         let renderer = new showdown.Converter();
 
@@ -110,9 +108,7 @@ window.PLFileEditor.prototype.initRestoreOriginalButton = function() {
 window.PLFileEditor.prototype.setEditorContents = function(contents) {
     this.editor.setValue(contents);
     this.editor.gotoLine(1, 0);
-    if (this.plOptionFocus) {
-        this.editor.focus();
-    }
+    this.editor.focus();
     this.syncFileToHiddenInput();
 };
 
